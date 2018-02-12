@@ -1,0 +1,200 @@
+﻿/// <summary>
+/// 哈尔滨师范大学教务系统开发
+/// 作者:易继勇
+/// 邮箱:yijiyong100@163.com
+/// qq:610068468
+/// 哈尔滨师范大学教务平台图片展示地址:http://photo.sina.com.cn/yijiyong100
+/// 如果您有什么问题,将您的问题发送至邮箱yijiyong100@163.com,欢迎大家和我交流讨论,多多希望您提出您宝贵的意见!
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.SqlClient;
+
+public partial class student_student_basicInfo : System.Web.UI.Page
+{
+    BaseClass bc = new BaseClass();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Convert.ToString(Session["stdUserName"]) == "")
+        {
+            Response.Write("<script language=javascript>location='../TS_login.aspx'</script>");
+            return;
+        }
+        studyNumber.Text = Session["stdUserName"].ToString();
+        IDcardNumber.Text = Session["stdIDcardNumber"].ToString();
+        studentName.Text = Session["stdName"].ToString();
+        
+        SqlConnection con = new SqlConnection(ConfigurationManager.AppSettings["strcon"]);
+        con.Open();
+        SqlCommand sd1= new SqlCommand("select usedName  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'",con);
+        string usedName = Convert.ToString(sd1.ExecuteScalar());
+        this.usedName.Text = usedName;
+        SqlCommand sd2 = new SqlCommand("select sex  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string sex = Convert.ToString(sd2.ExecuteScalar());
+        this.sex.Text = sex;
+        SqlCommand sd3 = new SqlCommand("select birthday  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string birthday = Convert.ToString(sd3.ExecuteScalar());
+        this.birthday.Text = birthday;
+        SqlCommand sd4 = new SqlCommand("select nation  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string nation = Convert.ToString(sd4.ExecuteScalar());
+        this.nation.Text = nation;
+        SqlCommand sd5 = new SqlCommand("select nativePlace  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string nativePlace = Convert.ToString(sd5.ExecuteScalar());
+        this.nativePlace.Text = nativePlace;
+        SqlCommand sd6 = new SqlCommand("select politicsVisage  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string politicsVisage = Convert.ToString(sd6.ExecuteScalar());
+        this.politicsVisage.Text = politicsVisage;
+        SqlCommand sd7 = new SqlCommand("select fromArea  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fromArea = Convert.ToString(sd7.ExecuteScalar());
+        this.fromArea.Text = fromArea;
+        SqlCommand sd8 = new SqlCommand("select fromProvince  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fromProvince = Convert.ToString(sd8.ExecuteScalar());
+        this.fromProvince.Text = fromProvince;
+        SqlCommand sd9 = new SqlCommand("select homePlace  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string homePlace = Convert.ToString(sd9.ExecuteScalar());
+        this.homePlace.Text = homePlace;
+        SqlCommand sd10 = new SqlCommand("select healthCondition  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string healthCondition = Convert.ToString(sd10.ExecuteScalar());
+        this.healthCondition.Text = healthCondition;
+        SqlCommand sd11 = new SqlCommand("select college  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string college = Convert.ToString(sd11.ExecuteScalar());
+        this.college.Text = college;
+        SqlCommand sd12 = new SqlCommand("select department  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string department = Convert.ToString(sd12.ExecuteScalar());
+        this.department.Text = department;
+        SqlCommand sd13 = new SqlCommand("select speciality  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string speciality = Convert.ToString(sd13.ExecuteScalar());
+        this.speciality.Text = speciality;
+        SqlCommand sd14 = new SqlCommand("select teachedClass  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string teachedClass = Convert.ToString(sd14.ExecuteScalar());
+        this.teachedClass.Text = teachedClass;
+        SqlCommand sd15 = new SqlCommand("select adminClass  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string adminClass = Convert.ToString(sd15.ExecuteScalar());
+        this.adminClass.Text = adminClass;
+        SqlCommand sd16 = new SqlCommand("select eductionalSystme  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string eductionalSystme = Convert.ToString(sd16.ExecuteScalar());
+        this.eductionalSystme.Text = eductionalSystme;
+        SqlCommand sd17 = new SqlCommand("select studyLength  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string studyLength = Convert.ToString(sd17.ExecuteScalar());
+        this.studyLength.Text = studyLength;
+        SqlCommand sd18 = new SqlCommand("select studyState  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string studyState = Convert.ToString(sd18.ExecuteScalar());
+        this.studyState.Text = studyState;
+        SqlCommand sd19 = new SqlCommand("select currentlyGrade  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string currentlyGrade = Convert.ToString(sd19.ExecuteScalar());
+        this.currentlyGrade.Text = currentlyGrade;
+        SqlCommand sd20 = new SqlCommand("select stdproveCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string stdproveCode = Convert.ToString(sd20.ExecuteScalar());
+        this.stdproveCode.Text = stdproveCode;
+        SqlCommand sd21 = new SqlCommand("select culitivateDirection  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string culitivateDirection = Convert.ToString(sd21.ExecuteScalar());
+        this.culitivateDirection.Text = culitivateDirection;
+        SqlCommand sd22 = new SqlCommand("select specialityDirection  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string specialityDirection = Convert.ToString(sd22.ExecuteScalar());
+        this.specialityDirection.Text = specialityDirection;
+        SqlCommand sd23 = new SqlCommand("select entranceDate  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string entranceDate = Convert.ToString(sd23.ExecuteScalar());
+        this.entranceDate.Text = entranceDate;
+        SqlCommand sd24 = new SqlCommand("select graduateSchool  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string graduateSchool = Convert.ToString(sd24.ExecuteScalar());
+        this.graduateSchool.Text = graduateSchool;
+        SqlCommand sd25 = new SqlCommand("select dormitoryCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string dormitoryCode = Convert.ToString(sd25.ExecuteScalar());
+        this.dormitoryCode.Text = dormitoryCode;
+        SqlCommand sd26 = new SqlCommand("select email  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string email = Convert.ToString(sd26.ExecuteScalar());
+        this.email.Text = email;
+        SqlCommand sd27 = new SqlCommand("select tel  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string tel = Convert.ToString(sd27.ExecuteScalar());
+        this.tel.Text = tel;
+        SqlCommand sd28 = new SqlCommand("select postalCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string postalCode = Convert.ToString(sd28.ExecuteScalar());
+        this.postalCode.Text = postalCode;
+        SqlCommand sd29 = new SqlCommand("select testproveCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string testproveCode = Convert.ToString(sd29.ExecuteScalar());
+        this.testproveCode.Text = testproveCode;
+        SqlCommand sd30 = new SqlCommand("select educationalLevel  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string educationalLevel = Convert.ToString(sd30.ExecuteScalar());
+        this.educationalLevel.Text = educationalLevel;
+        SqlCommand sd31 = new SqlCommand("select gangaotaiCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string gangaotaiCode = Convert.ToString(sd31.ExecuteScalar());
+        this.gangaotaiCode.Text = gangaotaiCode;
+        SqlCommand sd32 = new SqlCommand("select reportCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string reportCode = Convert.ToString(sd32.ExecuteScalar());
+        this.reportCode.Text = reportCode;
+        SqlCommand sd33 = new SqlCommand("select ifathlete  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string ifathlete = Convert.ToString(sd33.ExecuteScalar());
+        this.ifathlete.Text = ifathlete;
+        SqlCommand sd34 = new SqlCommand("select englishGrade  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string englishGrade = Convert.ToString(sd34.ExecuteScalar());
+        this.englishGrade.Text = englishGrade;
+        SqlCommand sd35 = new SqlCommand("select englishMark  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string englishMark = Convert.ToString(sd35.ExecuteScalar());
+        this.englishMark.Text = englishMark;
+        SqlCommand sd36 = new SqlCommand("select lujianCode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string lujianCode = Convert.ToString(sd36.ExecuteScalar());
+        this.lujianCode.Text = lujianCode;
+        SqlCommand sd37 = new SqlCommand("select strongSuit  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string strongSuit = Convert.ToString(sd37.ExecuteScalar());
+        this.strongSuit.Text = strongSuit;
+        SqlCommand sd38 = new SqlCommand("select partyTime  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string partyTime = Convert.ToString(sd38.ExecuteScalar());
+        this.partyTime.Text = partyTime;
+        SqlCommand sd39 = new SqlCommand("select trainDestination  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string trainDestination = Convert.ToString(sd39.ExecuteScalar());
+        this.trainDestination.Text = trainDestination;
+        SqlCommand sd40 = new SqlCommand("select handphoneStyle  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string handphoneStyle = Convert.ToString(sd40.ExecuteScalar());
+        this.handphoneStyle.Text = handphoneStyle;
+        SqlCommand sd41 = new SqlCommand("select handphoneNumber  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string handphoneNumber = Convert.ToString(sd41.ExecuteScalar());
+        this.handphoneNumber.Text = handphoneNumber;
+        SqlCommand sd42 = new SqlCommand("select homePostalcode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string homePostalcode = Convert.ToString(sd42.ExecuteScalar());
+        this.homePostalcode.Text = homePostalcode;
+        SqlCommand sd43 = new SqlCommand("select homeTel  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string homeTel = Convert.ToString(sd43.ExecuteScalar());
+        this.homeTel.Text = homeTel;
+        SqlCommand sd44 = new SqlCommand("select fatherName  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fatherName = Convert.ToString(sd44.ExecuteScalar());
+        this.fatherName.Text = fatherName;
+        SqlCommand sd45 = new SqlCommand("select fatherWorkplace  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fatherWorkplace = Convert.ToString(sd45.ExecuteScalar());
+        this.fatherWorkplace.Text = fatherWorkplace;
+        SqlCommand sd46 = new SqlCommand("select fatherPostalcode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fatherPostalcode = Convert.ToString(sd46.ExecuteScalar());
+        this.fatherPostalcode.Text = fatherPostalcode;
+        SqlCommand sd47 = new SqlCommand("select motherName  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string motherName = Convert.ToString(sd47.ExecuteScalar());
+        this.motherName.Text = motherName;
+        SqlCommand sd48 = new SqlCommand("select motherWorkplace  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string motherWorkplace = Convert.ToString(sd48.ExecuteScalar());
+        this.motherWorkplace.Text = motherWorkplace;
+        SqlCommand sd49 = new SqlCommand("select motherPostalcode  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string motherPostalcode = Convert.ToString(sd49.ExecuteScalar());
+        this.motherPostalcode.Text = motherPostalcode;
+        SqlCommand sd50 = new SqlCommand("select fatherTel  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string fatherTel = Convert.ToString(sd50.ExecuteScalar());
+        this.fatherTel.Text = fatherTel;
+        SqlCommand sd51 = new SqlCommand("select motherTel  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string motherTel = Convert.ToString(sd51.ExecuteScalar());
+        this.motherTel.Text = motherTel;
+        SqlCommand sd52 = new SqlCommand("select homeAddress  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string homeAddress = Convert.ToString(sd52.ExecuteScalar());
+        this.homeAddress.Text = homeAddress;
+        SqlCommand sd53 = new SqlCommand("select homeLocus  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string homeLocus = Convert.ToString(sd53.ExecuteScalar());
+        this.homeLocus.Text = homeLocus;
+        SqlCommand sd54 = new SqlCommand("select remark  from ts_xs_basicInfo where studyNumber='" + Session["stdUserName"] + "'", con);
+        string remark = Convert.ToString(sd54.ExecuteScalar());
+        this.remark.Text = remark;
+        
+    }
+}
